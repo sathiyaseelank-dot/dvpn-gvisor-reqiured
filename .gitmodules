@@ -1,0 +1,9 @@
+[submodule "android"]
+	path = android
+	url = https://github.com/sathiyaseelank-dot/gvisor-android-exit.git
+[submodule "Decentralized-VPN"]
+	path = Decentralized-VPN
+	url = https://github.com/Yogesh190602/Decentralized-VPN.git
+[submodule "firestack"]
+	path = firestack
+	url = https://github.com/celzero/firestack.git
