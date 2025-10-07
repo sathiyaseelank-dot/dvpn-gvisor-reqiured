@@ -1,0 +1,46 @@
+{
+  "server": {
+    "private_key": "uLauIkF48n0hrwmGMWrceyYJ65G5WDnu0wlF8GwoC2E=",
+    "public_key": "S5szbuNghzhLqFxCRuFVy9TBK45cAysMzazO/qQY2hw=",
+    "address": "10.8.0.1/24",
+    "port": 51820,
+    "config": "[Interface]\n# gVisor VPN Exit Node Configuration\nPrivateKey = uLauIkF48n0hrwmGMWrceyYJ65G5WDnu0wlF8GwoC2E=\nAddress = 10.8.0.1/24\nListenPort = 51820\n# Enable IP forwarding for exit node functionality\nPostUp = echo 1 > /proc/sys/net/ipv4/ip_forward\nPostUp = iptables -A FORWARD -i wg-exit -j ACCEPT\nPostUp = iptables -A FORWARD -o wg-exit -j ACCEPT  \nPostUp = iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE\nPostDown = iptables -D FORWARD -i wg-exit -j ACCEPT\nPostDown = iptables -D FORWARD -o wg-exit -j ACCEPT\nPostDown = iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE\n\n# Client 1\n[Peer]\nPublicKey = qhcyvfTV92a8bDYa1xyZad3L+fky/9gL3w+rB7NFjBE=\nAllowedIPs = 10.8.0.2/32\n\n# Client 2\n[Peer]\nPublicKey = F+/uvL43FfWrx/IdwdWUSo/kFlP20H/0Fnpu30KiF04=\nAllowedIPs = 10.8.0.3/32\n\n# Client 3\n[Peer]\nPublicKey = rtQbFFDCYLpfkowZY3/mte1Vg5LWAU9kU2J3M2lE1w8=\nAllowedIPs = 10.8.0.4/32\n\n# Client 4\n[Peer]\nPublicKey = jF+oJwbPnOm8+jDu1LzwowbgwJ3ie9HHKkT3i8C2rHE=\nAllowedIPs = 10.8.0.5/32\n\n# Client 5\n[Peer]\nPublicKey = g8XGv2kivM6KsuoNifamZmGnH5McACDxUVzii2bxGy0=\nAllowedIPs = 10.8.0.6/32\n\n"
+  },
+  "clients": [
+    {
+      "id": 1,
+      "private_key": "+CIXK3Xpij2TTm24CYncBcln6GHS/GWwHv0EjIW/8Gs=",
+      "public_key": "qhcyvfTV92a8bDYa1xyZad3L+fky/9gL3w+rB7NFjBE=",
+      "address": "10.8.0.2/24",
+      "config": "[Interface]\n# Client 1 configuration for gVisor VPN Exit Node\nPrivateKey = +CIXK3Xpij2TTm24CYncBcln6GHS/GWwHv0EjIW/8Gs=\nAddress = 10.8.0.2/24\nDNS = 8.8.8.8, 8.8.4.4\n\n[Peer]\n# gVisor VPN Exit Node\nPublicKey = S5szbuNghzhLqFxCRuFVy9TBK45cAysMzazO/qQY2hw=\nEndpoint = YOUR_EXIT_NODE_IP:51820\nAllowedIPs = 0.0.0.0/0, ::/0\nPersistentKeepalive = 25\n"
+    },
+    {
+      "id": 2,
+      "private_key": "yBsBPK2XbEkAgPXofmO13bVELl5IdFYvTf4DEnmlx2s=",
+      "public_key": "F+/uvL43FfWrx/IdwdWUSo/kFlP20H/0Fnpu30KiF04=",
+      "address": "10.8.0.3/24",
+      "config": "[Interface]\n# Client 2 configuration for gVisor VPN Exit Node\nPrivateKey = yBsBPK2XbEkAgPXofmO13bVELl5IdFYvTf4DEnmlx2s=\nAddress = 10.8.0.3/24\nDNS = 8.8.8.8, 8.8.4.4\n\n[Peer]\n# gVisor VPN Exit Node\nPublicKey = S5szbuNghzhLqFxCRuFVy9TBK45cAysMzazO/qQY2hw=\nEndpoint = YOUR_EXIT_NODE_IP:51820\nAllowedIPs = 0.0.0.0/0, ::/0\nPersistentKeepalive = 25\n"
+    },
+    {
+      "id": 3,
+      "private_key": "+Eff8KVRCDXf5x4aLAcFdJyCcrhPEamQoo9WEysPZk0=",
+      "public_key": "rtQbFFDCYLpfkowZY3/mte1Vg5LWAU9kU2J3M2lE1w8=",
+      "address": "10.8.0.4/24",
+      "config": "[Interface]\n# Client 3 configuration for gVisor VPN Exit Node\nPrivateKey = +Eff8KVRCDXf5x4aLAcFdJyCcrhPEamQoo9WEysPZk0=\nAddress = 10.8.0.4/24\nDNS = 8.8.8.8, 8.8.4.4\n\n[Peer]\n# gVisor VPN Exit Node\nPublicKey = S5szbuNghzhLqFxCRuFVy9TBK45cAysMzazO/qQY2hw=\nEndpoint = YOUR_EXIT_NODE_IP:51820\nAllowedIPs = 0.0.0.0/0, ::/0\nPersistentKeepalive = 25\n"
+    },
+    {
+      "id": 4,
+      "private_key": "mEPsRWloEZK8P1J8LykBbxSB7+klHKqlNBVk8AWMYV0=",
+      "public_key": "jF+oJwbPnOm8+jDu1LzwowbgwJ3ie9HHKkT3i8C2rHE=",
+      "address": "10.8.0.5/24",
+      "config": "[Interface]\n# Client 4 configuration for gVisor VPN Exit Node\nPrivateKey = mEPsRWloEZK8P1J8LykBbxSB7+klHKqlNBVk8AWMYV0=\nAddress = 10.8.0.5/24\nDNS = 8.8.8.8, 8.8.4.4\n\n[Peer]\n# gVisor VPN Exit Node\nPublicKey = S5szbuNghzhLqFxCRuFVy9TBK45cAysMzazO/qQY2hw=\nEndpoint = YOUR_EXIT_NODE_IP:51820\nAllowedIPs = 0.0.0.0/0, ::/0\nPersistentKeepalive = 25\n"
+    },
+    {
+      "id": 5,
+      "private_key": "uKt9nXZR0VIZC2Mqbi71Phjdk8S9wUuClWo+1diE73c=",
+      "public_key": "g8XGv2kivM6KsuoNifamZmGnH5McACDxUVzii2bxGy0=",
+      "address": "10.8.0.6/24",
+      "config": "[Interface]\n# Client 5 configuration for gVisor VPN Exit Node\nPrivateKey = uKt9nXZR0VIZC2Mqbi71Phjdk8S9wUuClWo+1diE73c=\nAddress = 10.8.0.6/24\nDNS = 8.8.8.8, 8.8.4.4\n\n[Peer]\n# gVisor VPN Exit Node\nPublicKey = S5szbuNghzhLqFxCRuFVy9TBK45cAysMzazO/qQY2hw=\nEndpoint = YOUR_EXIT_NODE_IP:51820\nAllowedIPs = 0.0.0.0/0, ::/0\nPersistentKeepalive = 25\n"
+    }
+  ]
+}
